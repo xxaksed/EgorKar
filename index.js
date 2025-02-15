@@ -1,59 +1,45 @@
-//algo #1 
-nums = [10, 22, 28, 29, 30, 40, 10, 23, 5, 7]
+let competitions = [
+    ["HTML", "C#"],
+    ["C#", "Python"],
+    ["Python", "HTML"],
+];
+let results = [0, 0, 1];
 
-function findPairClosNum(array, target) {
-    array.sort((a, b) => a - b);
-    let left = 0;
-    let right = array.length - 1;
-    let closestSum = Infinity;
-    let closestPair = [];
-    while (left < right) {
-        if (Math.abs(array[left] + array[right] - target) < Math.abs(closestSum - target)) {
-            closestSum = array[left] + array[right];
-            closestPair = [array[left], array[right]];
+
+function searchWinner(competitions, results) {
+    let mapWinner = new Map();
+    let currentWinner = "";
+    let winner = "";
+    mapWinner.set(currentWinner, 0);
+
+    for (let i = 0; i < competitions.length; i++) {
+
+        let homeTeam = competitions[i][0];
+        let awayTeam = competitions[i][1];
+
+        if (results[i] == 1) {
+            winner = homeTeam;
         }
-        if (array[left] + array[right] < target) {
-            left++;
-        } else {
-            right--;
+        if (results[i] == 0) {
+            winner = awayTeam;
         }
+        // console.log(homeTeam, awayTeam)
+        console.log(mapWinner)
+
+        if (mapWinner.get(winner) > mapWinner.get(currentWinner)) {
+            currentWinner = winner;
+        }
+
+        if (!mapWinner.has(winner)) {
+            mapWinner.set(winner, 0);
+        }
+
+        mapWinner.set(winner, mapWinner.get(winner) + 3);
+
     }
-    console.log(closestPair)
-    console.log(closestSum)
+    // console.log(winner)
+
+    return console.log(winner);
 }
 
-findPairClosNum(nums, 54)
-
-//algo #2 
-s = "swiss"
-function findPairClosNum(array) {
-    let left = 0;
-    let right = array.length - 1;
-    while (left < right) {
-        if (array[left] !== array[right]) {
-            right--
-        }
-        else {
-            left++
-            right = array.length - 1;
-        }
-    }
-    console.log(array[left])
-}
-
-findPairClosNum(s)
-
-//algo #3 
-s1 = "bottlewater"
-s2 = "erbottlewat"
-
-function isRotation(str1, str2) {
-    const concatenated = str1 + str1;
-    if (concatenated.includes(str2)) {
-        console.log(true)
-    }
-    else {
-        console.log(false)
-    }
-}
-isRotation(s1, s2)
+searchWinner(competitions, results);
