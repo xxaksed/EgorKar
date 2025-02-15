@@ -1,57 +1,59 @@
-var numbers = [13, 345, 1, 234, 23, 2, 3, 6, 5, 4567, 32, 45, 5, 43, 10];
+//algo #1 
+nums = [10, 22, 28, 29, 30, 40, 10, 23, 5, 7]
 
-// // alg #1
-// // two numbers sum!!!
-// // twoNumbersSum(numbers, 3); // => [1, 2]
-
-function twoNumSum(array, num) {
-    let searchDeff = new Map()
-    for (let i = 0; i < array.length; i++) {
-        let deff = num - array[i]
-        if (searchDeff.has(deff)) {
-            console.log(deff, array[i])
+function findPairClosNum(array, target) {
+    array.sort((a, b) => a - b);
+    let left = 0;
+    let right = array.length - 1;
+    let closestSum = Infinity;
+    let closestPair = [];
+    while (left < right) {
+        if (Math.abs(array[left] + array[right] - target) < Math.abs(closestSum - target)) {
+            closestSum = array[left] + array[right];
+            closestPair = [array[left], array[right]];
         }
-        searchDeff.set(array[i], i)
+        if (array[left] + array[right] < target) {
+            left++;
+        } else {
+            right--;
+        }
     }
-    // console.log(searchDeff)
+    console.log(closestPair)
+    console.log(closestSum)
 }
-twoNumSum(numbers, 235)
 
+findPairClosNum(nums, 54)
 
-// // alg #2
-var string = "Hello my friend! How're you! I am fine, thx";
-// // // foo(string) => {h: 3, f:3, *space: 5}
-function countSymb(array) {
-    let SymbMap = new Map()
-    for (let i = 0; i < array.length; i++) {
-        if (SymbMap.has(array[i])) {
-            SymbMap.set(array[i], SymbMap.get(array[i]) + 1)
+//algo #2 
+s = "swiss"
+function findPairClosNum(array) {
+    let left = 0;
+    let right = array.length - 1;
+    while (left < right) {
+        if (array[left] !== array[right]) {
+            right--
         }
         else {
-            SymbMap.set(array[i], 1)
+            left++
+            right = array.length - 1;
         }
     }
-    // console.log(SymbMap)
-    let result = Object.fromEntries(SymbMap)
-    console.log(result)
+    console.log(array[left])
 }
-countSymb(string)
 
+findPairClosNum(s)
 
-// // alg #3*
-var integers = [1, 234, 3, 34, , 34, 343, 653, 345, 35, 3, 3];
-// // foo(integers) => length
-// // I am not allow to use length!
-// // for !or! do while
-function fooLength(array) {
-    let counter = 0
-    for (let i = 0; i < array.length; i++) {
-        counter++
+//algo #3 
+s1 = "bottlewater"
+s2 = "erbottlewat"
+
+function isRotation(str1, str2) {
+    const concatenated = str1 + str1;
+    if (concatenated.includes(str2)) {
+        console.log(true)
     }
-    console.log(counter)
+    else {
+        console.log(false)
+    }
 }
-fooLength(integers)
-
-
-// // OPTIONAL Кто хочет может визуализировать каждый из этих алгоритмов как он хочет!
-
+isRotation(s1, s2)
