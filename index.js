@@ -37,9 +37,49 @@ function searchWinner(competitions, results) {
         mapWinner.set(winner, mapWinner.get(winner) + 3);
 
     }
+<<<<<<< Updated upstream
     // console.log(winner)
 
     return console.log(winner);
 }
 
 searchWinner(competitions, results);
+=======
+    
+    spiralMatrex(array);
+
+//-------------------------------------------------------------
+
+let words = ['dsadmvmjbv', "diaper", 'dsadsfgh', 'dssddsfdsfg', "abc", "asdsafg", 'dsadsfgh', "test", "cba", 'dsadsfgh', "repaid"];
+
+function findPalindrom(array) {
+    let Palindrom = [];
+    
+    let start = 0;
+    let end = array.length - 1;
+
+    while (start < array.length) { 
+        let myReverse = ""; 
+
+        for (let y = array[start].length - 1; y >= 0; y--) {
+            myReverse += array[start][y];
+        }
+
+        if (myReverse === array[end]) {
+            Palindrom.push([array[start], array[end]]);
+            end--; 
+        } else {
+            end--; 
+        }
+
+        if (end < start) {
+            start++;
+            end = array.length - 1;
+        }
+    }
+
+    console.log(Palindrom);
+}
+
+findPalindrom(words)
+>>>>>>> Stashed changes
